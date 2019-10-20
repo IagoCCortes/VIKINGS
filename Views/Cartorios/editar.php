@@ -56,7 +56,7 @@
       <input type="text" maxlength="2" class="form-control" id="uf" name="uf" placeholder="Digite o UF" required>
     </div>
     <div class="checkbox col2">
-      <label for="ativo" style="word-wrap:break-word"><input type="checkbox" name="ativo" class="form-control" id="ativo" style="width: 15px;height: 15px;" checked> Ativo</label>
+      <label for="ativo" style="word-wrap:break-word"><input type="checkbox" name="ativo" class="form-control" id="ativo" style="width: 15px;height: 15px;"> Ativo</label>
     </div>
   </div>  
   <button type="button" value="Voltar para a última página" class="btn btn-default float-left" onClick="javascript:history.go(-1)">Voltar</button>
