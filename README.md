@@ -54,8 +54,8 @@ os repassará para a view solicitada pelo usuário.
     - [X] Sign Up
     - [X] Login
     - [X] Logout
-    - [] Criação de perfis (controle de acesso)
-- [] Mensagens de erro/sucesso 
+    - [ ] Criação de perfis (controle de acesso)
+- [ ] Mensagens de erro/sucesso 
 
 ## Contatos
 * iagocortes@gmail.com
