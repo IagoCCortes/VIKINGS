@@ -1,4 +1,14 @@
-<form method="post" action="/VIKINGS/Emails/enviar/">
+<form method="post" action="/VIKINGS-master/Emails/enviar/">
+	<?php if(isset($_GET['error'])){
+        if($_GET['error'] == 'sendfail'){
+            echo '<p style="color:red;" class="text-center">Falha no envio do e-mail.</p>';
+        }
+        
+    }else if(isset($_GET['send'])){
+        if($_GET['send'] == 'success'){
+            echo '<p style="color:green;" class="text-center">E-mail enviado com sucesso.</p>';
+        }
+    };?>
 	<div class="form-group two-col">
 		<label for="para">Para <span style="color: red">*</span>:  
 		<span id="send2all" class="like-link"><u>Preencher com todos emails</u>

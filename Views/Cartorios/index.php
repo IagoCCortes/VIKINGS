@@ -2,7 +2,7 @@
     <div class="card-header">
         <h4 style="float: left">Cartórios</h4>
         <button type="button" data-toggle="modal" data-target="#myModal" class="float-right buttonAdd"id="modalTrigger">Cadastrar cartório</button>
-        <form method="post" action="/VIKINGS/Cartorios/exportarXLSX" name="excelForm" class="float-right">
+        <form method="post" action="/VIKINGS-master/Cartorios/exportarXLSX" name="excelForm" class="float-right">
           <button type="submit" name="export_excel" class="buttonAdd"id="modalTrigger" style="backgroud-color: #366f32 !important;margin-right: 10px;">Exportar para XLSX</button>
         </form>
     </div>
@@ -13,7 +13,7 @@
                   <div class="dataTables_length" id="dataTable_length">
                     <label>Mostrar: 
                       <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"
-                      onchange="javascript:location.href = '/VIKINGS/Cartorios/index/0/' + this.value +  '/<?php echo $search; ?>';">
+                      onchange="javascript:location.href = '/VIKINGS-master/Cartorios/index/0/' + this.value +  '/<?php echo $search; ?>';">
                         <option value="10"<?php echo ($count == 10? ' selected' : '');?>>10</option>
                         <option value="25"<?php echo ($count == 25? ' selected' : '');?>>25</option>
                         <option value="50"<?php echo ($count == 50? ' selected' : '');?>>50</option>
@@ -71,8 +71,8 @@
                             echo "<td class='text-center'>" . $cartorio['CRIADO_EM'] ."</td>";
                             echo "<td class='text-center'>" . ($cartorio['ATUALIZADO_EM'] === NULL ? '-' : $cartorio['ATUALIZADO_EM']) ."</td>";
                             echo "<td class='text-center'>
-                                    <a class='btn btn-xs' title='editar' href='/VIKINGS/cartorios/editar/" . $cartorio["COD"] . "' ><i style='color:#337ab7;' class='fas fa-edit'></i></a> 
-                                    <a href='/VIKINGS/cartorios/deletar/" . $cartorio["COD"] . 
+                                    <a class='btn btn-xs' title='editar' href='/VIKINGS-master/cartorios/editar/" . $cartorio["COD"] . "' ><i style='color:#337ab7;' class='fas fa-edit'></i></a> 
+                                    <a href='/VIKINGS-master/cartorios/deletar/" . $cartorio["COD"] . 
                                     "' class='btn btn-xs' title='deletar' onclick='return confirm(\"Você tem certeza que deseja deletar este registro?\");'>
                                     <i style='color:#337ab7;' class='fas fa-trash-alt'></i></a>
                                   </td>";
@@ -93,10 +93,10 @@
                   echo '<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">';
                   echo '<ul class="pagination">'; 
                         echo '<li class="paginate_button page-item previous' . ($curPg == 0? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_previous">
-                          <a href="/VIKINGS/cartorios/index/'. ($start - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Anteriores</a>
+                          <a href="/VIKINGS-master/cartorios/index/'. ($start - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Anteriores</a>
                         </li>';
                           echo '<li class="paginate_button page-item' . (0 == $curPg ? ' active' : '') . '">
-                                    <a href="/VIKINGS/cartorios/index/0/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">1</a>
+                                    <a href="/VIKINGS-master/cartorios/index/0/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">1</a>
                                   </li>';
                           for($i = $curPg -2; ($i <= $curPg + 2) && ($i < $totalPgs -1); $i++){
                             if($i < 1){
@@ -104,19 +104,19 @@
                             }
                             else{
                               echo '<li class="paginate_button page-item' . ($i == $curPg ? ' active' : '') . '">
-                                    <a href="/VIKINGS/cartorios/index/' . (($i + 1) * $count - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($i+2) . '" tabindex="0" class="page-link">' . ($i+1) . '</a>
+                                    <a href="/VIKINGS-master/cartorios/index/' . (($i + 1) * $count - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($i+2) . '" tabindex="0" class="page-link">' . ($i+1) . '</a>
                                   </li>';
                             }
                           }
                           if($totalPgs > 1){
                             echo '<li class="paginate_button page-item' . (($totalPgs -1) == $curPg ? ' active' : '') . '">
-                                      <a href="/VIKINGS/cartorios/index/' . ($totalPgs * $count - $count) . '/' . $count .
+                                      <a href="/VIKINGS-master/cartorios/index/' . ($totalPgs * $count - $count) . '/' . $count .
                                       '/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($totalPgs + 1) . '" tabindex="0" class="page-link"'. ($totalPgs + 1 == 1? ' style="display: none;"' : '') . '>' . $totalPgs . '</a>
                                     </li>';
                           }
                           
                         echo '<li class="paginate_button page-item next' . (((($curPg + 1)== $totalPgs) || ($totalPgs == 0))? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_next">
-                          <a href="/VIKINGS/cartorios/index/'. ($start + $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">Próximos</a>
+                          <a href="/VIKINGS-master/cartorios/index/'. ($start + $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">Próximos</a>
                         </li>'
                         ?>
                       </ul>
@@ -142,12 +142,12 @@
       </div>
       <div class="modal-body">
         <div class="form-group" id="xmlUp">  
-          <form method="post" action="/VIKINGS/cartorios/inserirXML" enctype="multipart/form-data" id="xmlForm">
+          <form method="post" action="/VIKINGS-master/cartorios/inserirXML" enctype="multipart/form-data" id="xmlForm">
             <label for="xmlFile">Selecione o arquivo XML com os dados dos cartórios a serem inseridos:</label>
             <input type="file" id="xmlFile" name="doc"/>
           </form>
         </div>
-        <form method='post' action='/VIKINGS/cartorios/inserir' id='insert' style="display: none;">
+        <form method='post' action='/VIKINGS-master/cartorios/inserir' id='insert' style="display: none;">
           <div class="form-group">
             <label for="nome">Nome <span style="color: red">*</span>:</label>
             <input type="text" maxlength="255" class="form-control" id="nome" name="nome" placeholder="Digite o nome do cartório" required>
@@ -243,7 +243,7 @@ input.addEventListener("keyup", function(event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
     // Trigger the button element with a click
-    javascript:location.href = '/VIKINGS/Cartorios/index/0/<?php echo $count; ?>/' + this.value;
+    javascript:location.href = '/VIKINGS-master/Cartorios/index/0/<?php echo $count; ?>/' + this.value;
   }
 });
 

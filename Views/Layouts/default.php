@@ -197,17 +197,17 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a id="anoreg" class="navbar-brand" href="/VIKINGS/" style="color: white">Anoreg</a>
-      <a id="navCart" class="navbar-brand" href="/VIKINGS/" style="color: white">Cartórios</a>
-      <a id="navMail" class="navbar-brand" href="/VIKINGS/Emails/enviar" style="color: white">E-mails</a>
+      <a id="anoreg" class="navbar-brand" href="/VIKINGS-master/" style="color: white">Anoreg</a>
+      <a id="navCart" class="navbar-brand" href="/VIKINGS-master/" style="color: white">Cartórios</a>
+      <a id="navMail" class="navbar-brand" href="/VIKINGS-master/Emails/enviar" style="color: white">E-mails</a>
     </div>
     <div class="navbar-header float-right"> 
       <?php 
       if(!isset($_SESSION['user'])){
-        echo '<a id="login" class="navbar-brand" href="/VIKINGS/Users/login" style="color: white">Login <i class="fas fa-sign-in-alt" title="login"></i></a>';
+        echo '<a id="login" class="navbar-brand" href="/VIKINGS-master/Users/login" style="color: white">Login <i class="fas fa-sign-in-alt" title="login"></i></a>';
       }else{
-        echo '<a id="userPg" class="navbar-brand" href="/VIKINGS/Users/u/' . $_SESSION['user'] . '" style="color: white">' . $_SESSION['user'] . '</a>';
-        echo '<a id="logout" class="navbar-brand" href="/VIKINGS/Users/logout" style="color: white">Logout <i class="fas fa-sign-out-alt" title="logout"></i></i></a>';
+        echo '<a id="userPg" class="navbar-brand" href="/VIKINGS-master/Users/u/' . $_SESSION['user'] . '" style="color: white">' . $_SESSION['user'] . '</a>';
+        echo '<a id="logout" class="navbar-brand" href="/VIKINGS-master/Users/logout" style="color: white">Logout <i class="fas fa-sign-out-alt" title="logout"></i></i></a>';
       }
       ?>
       
@@ -220,6 +220,17 @@
       <main role="main">
 
       <div class="starter-template">
+          <?php if(isset($_GET['success'])){
+            if($_GET['success'] == 'insert'){
+                echo '<p style="color:green;" class="text-center">Cadastro realizado com sucesso.</p>';
+            }else if($_GET['success'] == 'insertxml'){
+                  echo '<p style="color:green;" class="text-center">Cadastro(s) por arquivo xml realizado(s) com sucesso.</p>';
+            }else if($_GET['success'] == 'edit'){
+              echo '<p style="color:green;" class="text-center">Edição realizada com sucesso.</p>';
+            }else if($_GET['success'] == 'delete'){
+              echo '<p style="color:green;" class="text-center">Registro deletado com sucesso.</p>';
+            }
+          };?>
 
           <?php
           echo $content_for_layout;

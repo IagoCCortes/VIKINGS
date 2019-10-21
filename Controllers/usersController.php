@@ -15,36 +15,29 @@ class usersController extends Controller {
             $senha = $_POST['senha'];
             $csenha = $_POST['csenha'];
 
-            //Lidar com erros-> permitir usar queries no router
             if((!filter_var($email, FILTER_VALIDATE_EMAIL)) && (!preg_match("/^[a-zA-Z0-9]*$/", $user))){
-                //header("location: " . WEBROOT . "Users/acessar?error=invalidmailuid");
-                //exit();
-                header("location: " . WEBROOT . "Users/signup");
+                header("location: " . WEBROOT . "Users/signup?error=invalidmailuid");
+                exit();
             }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                //header("location: " . WEBROOT . "Users/signup?error=invalidmail&user=".$user);
-                //exit();
-                header("location: " . WEBROOT . "Users/signup");
+                header("location: " . WEBROOT . "Users/signup?error=invalidmail&user=".$user);
+                exit();
             }else if(!preg_match("/^[a-zA-Z0-9]*$/", $user)){
-                //header("location: " . WEBROOT . "Users/signup?error=invaliduid&mail=" . $email);
-                //exit();
-                header("location: " . WEBROOT . "Users/signup");
+                header("location: " . WEBROOT . "Users/signup?error=invaliduid&mail=" . $email);
+                exit();
             }else if($senha !== $csenha){
-                //header("location: " . WEBROOT . "Users/signup?error=difPasswrds&user=".$user . "&mail=" . $email);
-                //exit();
-                header("location: " . WEBROOT . "Users/signup");
+                header("location: " . WEBROOT . "Users/signup?error=difPasswrds&user=".$user . "&mail=" . $email);
+                exit();
             }else{
                 require(ROOT . 'Models/Users.php');
                 $users = new Users();
                 $resultado = $users->pesquisarUserEmail($user);
 
                 if($resultado[0] > 0){
-                    //header("location: " . WEBROOT . "Users/signup?error=uidTaken&mail=".$email);
-                    //exit();
-                    header("location: " . WEBROOT . "Users/signup");
+                    header("location: " . WEBROOT . "Users/signup?error=uidTaken&mail=".$email);
+                    exit();
                 }else{
                     $resultado = $users->inserir([$user, $email, $senha]);
-                    //header("location: " . WEBROOT . "Users/signup?signup=success");
-                    header("location: " . WEBROOT . "Users/login");
+                    header("location: " . WEBROOT . "Users/login?signup=success");
                     exit();
                 }
             }
@@ -68,8 +61,10 @@ class usersController extends Controller {
             if(isset($result)){
                 session_start();
                 $_SESSION['user'] = $result;
-                //$_SESSION['user'] = 'iago';
                 header("location: " . WEBROOT . "Cartorios/index");
+                exit();
+            }else{
+                header("location: " . WEBROOT . "Users/login?error=nomatch");
                 exit();
             }
         }

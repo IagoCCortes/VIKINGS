@@ -56,7 +56,11 @@ class cartoriosController extends Controller {
                                     $_POST["cep"], $_POST["endereco"], $_POST["bairro"], 
                                     $_POST["cidade"], $_POST["uf"], $_POST["telefone"], 
                                     $_POST["email"], $_POST["tabeliao"], $_POST["ativo"]])) {
-                header("Location: " . WEBROOT . "Cartorios/index");
+                header("Location: " . WEBROOT . "Cartorios/index?success=insert");
+                exit();
+            }else{
+                header("Location: " . WEBROOT . "Cartorios/index?error=insertfail");
+                exit();
             }
         }
         
@@ -77,8 +81,11 @@ class cartoriosController extends Controller {
                                  $_POST["cep"], $_POST["endereco"], $_POST["bairro"], 
                                  $_POST["cidade"], $_POST["uf"], $_POST["telefone"], 
                                  $_POST["email"], $_POST["tabeliao"], $_POST["ativo"]])) {
-                header("Location: " . WEBROOT . "Cartorios/index");
-                $this->render("index");
+                header("Location: " . WEBROOT . "Cartorios/index?success=edit");
+                exit();
+            }else{
+                header("Location: " . WEBROOT . "Cartorios/editar?error=editfail");
+                exit();
             }
         }
         $this->set($d);
@@ -93,7 +100,11 @@ class cartoriosController extends Controller {
         $cartorios = new Cartorios();
 
         if ($cartorios->deletar($cod)) {
-            header("Location: " . WEBROOT . "Cartorios/index");
+            header("Location: " . WEBROOT . "Cartorios/index?success=delete");
+            exit();
+        }else{
+            header("Location: " . WEBROOT . "Cartorios/index?error=deletefail");
+            exit();
         }
     }
 
@@ -108,7 +119,11 @@ class cartoriosController extends Controller {
             require(ROOT . 'Models/Cartorios.php');
             $cartorios= new Cartorios();
             if ($cartorios->inserirVarios($xml)) {
-                header("Location: " . WEBROOT . "Cartorios/index");
+                header("Location: " . WEBROOT . "Cartorios/index?success=insertxml");
+                exit();
+            }else{
+                header("Location: " . WEBROOT . "Cartorios/index?error=xmlfail");
+                exit();
             }
         }
         $this->render("index");

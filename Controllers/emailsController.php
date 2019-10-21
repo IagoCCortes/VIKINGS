@@ -30,7 +30,13 @@ class emailsController extends Controller {
                 $message->attach(Swift_Attachment::fromPath($_FILES["att"]["tmp_name"])->setFilename($_FILES["att"]["name"]));
             }*/
             // Send the message
-            $result = $mailer->send($message);
+            if($mailer->send($message)){
+                header("location: " . WEBROOT . "Emails/enviar?send=success");
+                exit();
+            }else{
+                header("location: " . WEBROOT . "Emails/enviar?error=sendfail");
+                exit(); 
+            }
         }
         $this->set($d);
         $this->render('enviar');

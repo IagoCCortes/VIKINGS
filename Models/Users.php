@@ -57,15 +57,8 @@ class Users extends Model {
                 return;
             }else{
                 return $result['USERNAME'];
-                //return $result['USERNAME'];
             }
         }
-        /*para o controlador
-        if(!$req->execute(array($uid))){
-            header("location: " . WEBROOT . "Users/signUp?error=sqlError");
-            exit();
-        }*/
     }
-
 }
 ?>

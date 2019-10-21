@@ -23,10 +23,10 @@ $req->execute();
 self::$bdd = new PDO('mysql:dbname=vikings;host=localhost', '<usuario>', '<senha>');
 ```
 
-Rode [este](http://localhost/VIKINGS/createDBVIKINGS.php) script para criar a base dados: 'VIKINGS', duas tabelas: 'CARTORIOS E USUARIOS' e, 
+Rode [este](http://localhost/VIKINGS-master/createDBVIKINGS.php) script para criar a base dados: 'VIKINGS', duas tabelas: 'CARTORIOS E USUARIOS' e, 
 popular a tabela CARTORIOS com os dados presentes na planilha excel Cartórios (deve estar na mesma pasta do script).  
 
-Depois disso basta acessar o site [aqui](http://localhost/VIKINGS/).
+Depois disso basta acessar o site [aqui](http://localhost/VIKINGS-master/).
 
 ## Funcionamento
 Ao acessar o site o usuário é automaticamente redirecionado para 'Root/index.php' que realizará os requires nos arquivos necessários para a classe Dispatcher.
@@ -56,7 +56,7 @@ os repassará para a view solicitada pelo usuário.
     - [X] Login
     - [X] Logout
     - [ ] Criação de perfis (controle de acesso)
-- [ ] Mensagens de erro/sucesso 
+- [X] Mensagens de erro/sucesso 
 
 ## Contatos
 * iagocortes@gmail.com
