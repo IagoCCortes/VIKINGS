@@ -1,7 +1,14 @@
 <?php
 class emailsController extends Controller {
+    /***********************************************************************
+     * Classe responsável por controlar as ações relacionadas a emails
+     **********************************************************************/
 
     function enviar(){
+        /*******************************************************************
+         * Envia emails a todos os destinatários selecionados por meio da 
+         * biblioteca swift mailer 
+         ******************************************************************/
         require(ROOT . 'Models/Cartorios.php');
         $cartorios= new Cartorios();
         $d['emails'] = $cartorios->selecionaEmails();

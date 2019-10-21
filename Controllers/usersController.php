@@ -1,7 +1,14 @@
 <?php
 class usersController extends Controller {
+    /***********************************************************************
+     * Classe responsável por controlar as ações relacionadas aos usuarios
+     **********************************************************************/
 
     function signup() {
+        /*******************************************************************
+         * Valida os dados fornecidos pelo usuário e casos eles sejam validos
+         * envia este dados para o modelo Users para inserção no bd 
+         ******************************************************************/
         if(isset($_POST['btn-SU'])){
             $user = $_POST['user'];
             $email = $_POST['email'];
@@ -46,6 +53,10 @@ class usersController extends Controller {
     }
 
     function login() {
+        /*******************************************************************
+         * Valida se os dados de login fornecidos correspondem a uma conta 
+         * salva e inicia uma sessão para este usuário 
+         ******************************************************************/
         if(isset($_POST['btnLogin'])){
             $user = $_POST['userLog'];
             $pwd = $_POST['senhaLog'];
@@ -66,6 +77,9 @@ class usersController extends Controller {
     }
 
     function logout(){
+        /*******************************************************************
+         * Realiza logout finalizando a sessão
+         ******************************************************************/
         session_start();
         session_unset();
         session_destroy();

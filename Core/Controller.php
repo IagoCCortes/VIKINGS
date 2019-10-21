@@ -1,6 +1,9 @@
 <?php
     class Controller {
-
+        /***********************************************************************
+        * Classe pai dos controladores responsável por criar o contexto (set) a 
+        * ser usado pela view carregada e o layout em render 
+        **********************************************************************/
         var $vars = [];
         var $layout = "default";
 

@@ -2,8 +2,15 @@
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class cartoriosController extends Controller {
+    /***********************************************************************
+     * Classe responsável por controlar as ações relacionadas a cartórios
+     **********************************************************************/
 
     function index($start = NULL, $count = NULL, $search = NULL) {
+        /*******************************************************************
+         * Repassa um intervalo de registros de cartorios para a view 
+         * Cartórios/index 
+         ******************************************************************/
         $start = ($start === NULL? 0 : $start);
         $count = ($count === NULL? 25 : $count);
         require(ROOT . 'Models/Cartorios.php');
@@ -22,6 +29,10 @@ class cartoriosController extends Controller {
     }
 
     function indexAll($search = NULL) {
+        /*******************************************************************
+         * Repassa todos os registros de cartórios para a view 
+         * Cartórios/index 
+         ******************************************************************/
         require(ROOT . 'Models/Cartorios.php');
         $cartorios = new Cartorios();
         $d['search'] = $search;
@@ -34,6 +45,10 @@ class cartoriosController extends Controller {
     }
 
     function inserir() {
+        /*******************************************************************
+         * Envia dados submetidos pelo usuário para o modelo Cartórios para
+         * inserção desses no banco de dados
+         ******************************************************************/
         if (isset($_POST["nome"])) {
             require(ROOT . 'Models/Cartorios.php');
             $cartorios= new Cartorios();
@@ -49,7 +64,10 @@ class cartoriosController extends Controller {
     }
 
     function editar($cod) {
-
+        /*******************************************************************
+         * Passa os dados submetidos pelo usuário para o modelo Cartórios 
+         * para edição de um registro
+         ******************************************************************/
         require(ROOT . 'Models/Cartorios.php');
         $cartorios= new Cartorios();
         $d["cartorios"] = $cartorios->mostraRegistro($cod);
@@ -68,7 +86,9 @@ class cartoriosController extends Controller {
     }
 
     function deletar($cod) {
-
+        /*******************************************************************
+         * Envia ao modelo Cartorios o código de um registro a ser deletado
+         ******************************************************************/
         require(ROOT . 'Models/Cartorios.php');
         $cartorios = new Cartorios();
 
@@ -78,6 +98,10 @@ class cartoriosController extends Controller {
     }
 
     function inserirXML(){
+        /*******************************************************************
+         * Passa um array (gerado após a leitura de um arquivo xml) para o 
+         * modelo Cartórios para inserção de todos os registros do arquivo
+         ******************************************************************/
         if ((isset($_FILES["doc"])) && ($_FILES['doc']['error'] == UPLOAD_ERR_OK)) {
             $xml = simplexml_load_file($_FILES['doc']['tmp_name']);
 
@@ -91,6 +115,10 @@ class cartoriosController extends Controller {
     }
     
     function exportarXLSX(){
+        /*******************************************************************
+         * Gera um arquivo xlsx a partir da tabela cartorios usando 
+         * a biblioteca phpspredsheet 
+         ******************************************************************/
         if(isset($_POST['export_excel'])){
             require(ROOT . 'Models/Cartorios.php');
             $cartorios = new Cartorios();

@@ -1,6 +1,8 @@
 <?php
 class Router {
-
+    /**************************************************************
+    * Faz o parser da url solicitada 
+    **************************************************************/
     static public function parse($url, $request) {
 
         $url = trim($url);

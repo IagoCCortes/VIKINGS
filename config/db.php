@@ -1,5 +1,8 @@
 <?php
 class Database {
+    /*******************************************************************
+     * Classe singleton responsável pela conexão com o banco de dados
+     ******************************************************************/
     private static $bdd = null;
     private function __construct() {
     }

@@ -46,9 +46,16 @@ os repassará para a view solicitada pelo usuário.
     - [x] por meio de arquivo xml
 - [x] Edição dos registros cadastrados
 - [x] Possibilidade de deletar registros
-- [x] list syntax required (any unordered or ordered list supported)
-- [x] this is a complete item
-- [ ] this is an incomplete item
+- [x] Enviar email para emails presentes no relatório
+    - [X] enviar para todos
+    - [X] enviar somente para os emails ligados a registros ativos
+- [x] Permitir exportar os dados de cartorios pra uma planilha excel
+- [ ] Autenticação
+    - [X] Sign Up
+    - [X] Login
+    - [X] Logout
+    - [] Criação de perfis (controle de acesso)
+- [] Mensagens de erro/sucesso 
 
 ## Contatos
 * iagocortes@gmail.com

@@ -1,7 +1,15 @@
 <?php
 class Cartorios extends Model {
+    /***********************************************************************
+     * Classe responsável pelas ações relacionadas à tabela cartorios no 
+     * banco de dados
+     **********************************************************************/
 
     public function inserir($campos) {
+        /*******************************************************************
+         * Envia emails a todos os destinatários selecionados por meio da 
+         * biblioteca swift mailer 
+         ******************************************************************/
         $sql = "INSERT INTO cartorios 
         (nome, razao, documento, cep, endereco, bairro, cidade, uf, telefone, email, tabeliao, ativo, xml_atualizar)
         VALUES (:nome, :razao, :documento, :cep, :endereco, :bairro, :cidade, :uf, :telefone, :email, :tabeliao, :ativo, 0)";
