@@ -21,13 +21,14 @@ class emailsController extends Controller {
 
             // Create the Mailer using your created Transport
             $mailer = new Swift_Mailer($transport);
-
             // Create a message
             $message = (new Swift_Message($_POST['assunto']))
                             ->setFrom(['vikinganoreg@gmail.com'])
                             ->setTo(explode(',',str_replace(' ', '', $_POST['para'])))
                             ->setBody($_POST['texto']);
-
+            /*if ((isset($_FILES["att"])) && ($_FILES["att"]["error"] == UPLOAD_ERR_OK)) {
+                $message->attach(Swift_Attachment::fromPath($_FILES["att"]["tmp_name"])->setFilename($_FILES["att"]["name"]));
+            }*/
             // Send the message
             $result = $mailer->send($message);
         }

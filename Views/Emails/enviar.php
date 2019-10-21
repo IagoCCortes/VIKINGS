@@ -14,6 +14,10 @@
 		<label for="texto">Texto <span style="color: red">*</span>:</label>
       	<textarea class="form-control" id="texto" name="texto" rows="4" required></textarea>
 	</div> 
+	<!--<div class="form-group">
+		<label for="att">Anexo:</label>
+		<input type="file" id="att" name="att" />
+	</div>-->
 	<input type="submit" class="btn btn-primary float-right" name="send">
 </form>
 <script>
