@@ -58,21 +58,26 @@ class Cartorios extends Model {
     }
 
     public function mostraRegistro($cod) {
-        $sql = "SELECT * FROM cartorios WHERE cod = " . $cod;
+        $sql = "SELECT * FROM cartorios WHERE cod = :cod";
         $req = Database::getBdd()->prepare($sql);
-        $req->execute();
+        $req->execute(array(
+            ':cod' => $cod 
+        ));
         return $req->fetch();
     }
 
     public function mostraTodosRegistros() {
-        $sql = "SELECT * FROM cartorios order by atualizado_em desc, criado_em desc";
+        $sql = "SELECT * FROM cartorios order by xml_atualizar desc, atualizado_em desc, criado_em desc";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetchAll();
     }
 
     public function mostraIntervaloDeRegistros($start, $count){
-        $sql = "SELECT * FROM cartorios order by xml_atualizar desc, atualizado_em desc, criado_em desc limit " . $start . " ," . $count;
+        $sql = "SELECT * 
+                FROM cartorios 
+                order by xml_atualizar desc, atualizado_em desc, criado_em desc 
+                limit " . $start . ", " . $count;
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetchAll();
@@ -82,7 +87,7 @@ class Cartorios extends Model {
         $sql = "UPDATE cartorios SET nome = :nome, razao = :razao, documento = :documento, cep = :cep, 
                                      endereco = :endereco, bairro = :bairro, cidade = :cidade, uf = :uf, 
                                      telefone = :telefone, email = :email, tabeliao = :tabeliao, ativo = :ativo,
-                                     atualizado_em = CURRENT_TIMESTAMP(), xml_atualizar = 0 where cod = " . $cod;
+                                     atualizado_em = CURRENT_TIMESTAMP(), xml_atualizar = 0 where cod = :cod";
         $req = Database::getBdd()->prepare($sql);
 
         return $req->execute(array(
@@ -96,15 +101,16 @@ class Cartorios extends Model {
             ':uf'=> $campos[7],
             ':telefone'=> $campos[8],
             ':email'=> $campos[9],
-            ':tabeliao'=> $campos[10],
-            ':ativo'=> $campos[11] === NULL ? 0 : 1
+            ':tabeliao' => $campos[10],
+            ':ativo' => $campos[11] === NULL ? 0 : 1,
+            ':cod' => $cod
         ));
     }
 
     public function deletar($cod) {
-        $sql = 'DELETE FROM cartorios WHERE cod = ' . $cod;
+        $sql = 'DELETE FROM cartorios WHERE cod = ?';
         $req = Database::getBdd()->prepare($sql);
-        return $req->execute();
+        return $req->execute(array($cod));
     }
 
     public function mostraRegistrosPesquisados($start, $count, $search){

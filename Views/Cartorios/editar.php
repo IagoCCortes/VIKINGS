@@ -1,5 +1,5 @@
 <!-- Editar cartório-->
-<?php echo "<form method='post' action='/VIKINGS/cartorios/editar/" . $cartorios['COD'] . "'>"; ?>
+<?php echo "<form method='post' style='width:50%;margin:auto;' action='/VIKINGS/cartorios/editar/" . $cartorios['COD'] . "'>"; ?>
   <div class="form-group two-col">
     <div class="col1">
       <label for="nome">Nome <span style="color: red">*</span>:</label>

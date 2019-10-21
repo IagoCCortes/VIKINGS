@@ -192,7 +192,7 @@
           <div class="form-group two-col">
             <div class="col1">
               <label for="uf">UF <span style="color: red">*</span>:</label>
-              <input type="text" maxlength="2" class="form-control" id="uf" name="uf" placeholder="Digite o UF" required>
+              <input type="text" maxlength="2" class="form-control" id="uf" name="uf" placeholder="Digite a UF" required>
             </div>
             <div class="checkbox col2">
               <label for="ativo"><input type="checkbox" name="ativo" class="form-control" id="ativo" style="width: 15px;height: 15px;" checked> Ativo</label>
@@ -241,4 +241,6 @@ input.addEventListener("keyup", function(event) {
     javascript:location.href = '/VIKINGS/Cartorios/index/0/<?php echo $count; ?>/' + this.value;
   }
 });
+
+$('#search').val('<?php echo $search; ?>');
 </script>

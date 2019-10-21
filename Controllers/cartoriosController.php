@@ -21,9 +21,10 @@ class cartoriosController extends Controller {
         $this->render("index");
     }
 
-    function indexAll() {
+    function indexAll($search = NULL) {
         require(ROOT . 'Models/Cartorios.php');
         $cartorios = new Cartorios();
+        $d['search'] = $search;
         $d['start'] = 0;
         $d['total'] = $cartorios->totalDeRegistros();
         $d['count'] = $d['total'][0];
@@ -90,40 +91,31 @@ class cartoriosController extends Controller {
     }
     
     function exportarXLSX(){
-        require(ROOT . 'Models/Cartorios.php');
-        $cartorios = new Cartorios();
-        $resultado = $cartorios->mostraTodosRegistros();
+        if(isset($_POST['export_excel'])){
+            require(ROOT . 'Models/Cartorios.php');
+            $cartorios = new Cartorios();
+            $resultado = $cartorios->mostraTodosRegistros();
 
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->fromArray(['NOME', 'RAZÃO', 'DOCUMENTO', 'CEP', 'ENDEREÇO', 'BAIRRO', 'CIDADE', 'UF', 'TELEFONE', 'E-MAIL', 'TABELIÃO', 'ATIVO'], NULL, 'A1');
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->fromArray(['NOME', 'RAZÃO', 'DOCUMENTO', 'CEP', 'ENDEREÇO', 'BAIRRO', 'CIDADE', 'UF', 'TELEFONE', 'E-MAIL', 'TABELIÃO', 'ATIVO'], NULL, 'A1');
 
-        $i = 2;
-        foreach ($resultado as $row) {
-            $sheet->fromArray([$row['NOME'], $row['RAZAO'], (string) $row['DOCUMENTO'], $row['CEP'], $row['ENDERECO'], $row['BAIRRO'], $row['CIDADE'], $row['UF'], 
-                                $row['TELEFONE'], $row['EMAIL'], $row['TABELIAO'], ($row['ATIVO'] == 1? 'SIM' : 'NÃO')], NULL, 'A' . $i);
-            $i++;
-        }    
+            $i = 2;
+            foreach ($resultado as $row) {
+                $sheet->fromArray([$row['NOME'], $row['RAZAO'], (string) $row['DOCUMENTO'], $row['CEP'], $row['ENDERECO'], $row['BAIRRO'], $row['CIDADE'], $row['UF'], 
+                                    $row['TELEFONE'], $row['EMAIL'], $row['TABELIAO'], ($row['ATIVO'] == 1? 'SIM' : 'NÃO')], NULL, 'A' . $i);
+                $i++;
+            }    
 
 
 
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="Cartórios.xlsx"');
-        header('Cache-Control: max-age=0');
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="Cartórios.xlsx"');
+            header('Cache-Control: max-age=0');
 
-        $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
-        $writer->save('php://output');
-    }
-
-    function indexSearch($texto){
-        require(ROOT . 'Models/Cartorios.php');
-        $cartorios = new Cartorios();
-        $d['start'] = 0;
-        $d['total'] = $cartorios->totalDeRegistros();
-        $d['count'] = 25;
-        $d['cartorios'] = $cartorios->mostraTodosRegistros();
-        $this->set($d);
-        $this->render("index");
+            $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+            $writer->save('php://output');
+        }
     }
 }
 ?>
