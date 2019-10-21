@@ -44,6 +44,7 @@ os repassará para a view solicitada pelo usuário.
 - [x] Criação de registros de cartórios
     - [x] Manual
     - [x] por meio de arquivo xml
+- [X] Destacar registros inseridos por xml
 - [x] Edição dos registros cadastrados
 - [x] Possibilidade de deletar registros
 - [x] Enviar email para emails presentes no relatório

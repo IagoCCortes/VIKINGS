@@ -7,8 +7,7 @@ class Cartorios extends Model {
 
     public function inserir($campos) {
         /*******************************************************************
-         * Envia emails a todos os destinatários selecionados por meio da 
-         * biblioteca swift mailer 
+         * Insere os dados $campos na tabela cartorios
          ******************************************************************/
         $sql = "INSERT INTO cartorios 
         (nome, razao, documento, cep, endereco, bairro, cidade, uf, telefone, email, tabeliao, ativo, xml_atualizar)
@@ -33,6 +32,10 @@ class Cartorios extends Model {
     }
 
     public function inserirVarios($campos) {
+        /*******************************************************************
+         * Itera sobre $campos para inserir vários registros na tabela 
+         * cartórios
+         ******************************************************************/
         foreach($campos->children() as $child) {
             $sql = "INSERT INTO cartorios 
                      (nome, razao, documento, cep, endereco, bairro, cidade, uf, tabeliao, ativo, xml_atualizar)
@@ -59,6 +62,9 @@ class Cartorios extends Model {
     }
 
     public function totalDeRegistros(){
+        /*******************************************************************
+         * Retorna o total de registros na tabela cartorios
+         ******************************************************************/
         $sql = "SELECT count(*) FROM cartorios";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
@@ -66,6 +72,10 @@ class Cartorios extends Model {
     }
 
     public function mostraRegistro($cod) {
+        /*******************************************************************
+         * Retorna todos os elementos de um registro identificado por $cod 
+         * da tabela cartorios
+         ******************************************************************/
         $sql = "SELECT * FROM cartorios WHERE cod = :cod";
         $req = Database::getBdd()->prepare($sql);
         $req->execute(array(
@@ -75,6 +85,9 @@ class Cartorios extends Model {
     }
 
     public function mostraTodosRegistros() {
+        /*******************************************************************
+         * Retorna todos os registros da tabela cartorios
+         ******************************************************************/
         $sql = "SELECT * FROM cartorios order by xml_atualizar desc, atualizado_em desc, criado_em desc";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
@@ -82,6 +95,10 @@ class Cartorios extends Model {
     }
 
     public function mostraIntervaloDeRegistros($start, $count){
+        /*******************************************************************
+         * Retorna um intervalo de registros da tabela cartorios defino por 
+         * $start (início) e $count (quantidade de registros)
+         ******************************************************************/
         //risco de segurança
         $sql = "SELECT * 
                 FROM cartorios 
@@ -93,6 +110,10 @@ class Cartorios extends Model {
     }
 
     public function editar($cod, $campos) {
+        /*******************************************************************
+         * Edita o registro de identificador $cod com os valores em $campos 
+         * na tabela cartorios 
+         ******************************************************************/
         $sql = "UPDATE cartorios SET nome = :nome, razao = :razao, documento = :documento, cep = :cep, 
                                      endereco = :endereco, bairro = :bairro, cidade = :cidade, uf = :uf, 
                                      telefone = :telefone, email = :email, tabeliao = :tabeliao, ativo = :ativo,
@@ -117,12 +138,20 @@ class Cartorios extends Model {
     }
 
     public function deletar($cod) {
+        /*******************************************************************
+         * Deleta o registro de identificador $cod da tabela cartorios
+         ******************************************************************/
         $sql = 'DELETE FROM cartorios WHERE cod = ?';
         $req = Database::getBdd()->prepare($sql);
         return $req->execute(array($cod));
     }
 
     public function mostraRegistrosPesquisados($start, $count, $search){
+        /*******************************************************************
+         * Retorna todos os registros nos quais algum valor em alguma das 
+         * colunas contenha o valor $search em um intervalo definido por 
+         * $start e $count
+         ******************************************************************/
         //risco de segurança
         $sql = "SELECT * 
         FROM cartorios 
@@ -147,6 +176,9 @@ class Cartorios extends Model {
     }
 
     public function selecionaEmails() {
+        /*******************************************************************
+         * Retorna todos os emails distintos presentes na tabela cartorios
+         ******************************************************************/
         $sql = "select distinct email from cartorios where email is not null";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
@@ -154,6 +186,10 @@ class Cartorios extends Model {
     }
 
     public function selecionaEmailsAtivos() {
+        /*******************************************************************
+         * Retorna todos os emails distintos presentes na tabela cartorios 
+         * em registros ativos
+         ******************************************************************/
         $sql = "select distinct email from cartorios where email is not null and ativo = 1";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();

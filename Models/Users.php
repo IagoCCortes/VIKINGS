@@ -7,7 +7,7 @@ class Users extends Model {
 
     public function inserir($campos) {
         /*******************************************************************
-         * Insere os dados em $campos na tabela usuarios
+         * Insere os dados $campos na tabela usuarios
          ******************************************************************/
         $sql = "INSERT INTO usuarios 
         (username, email, password)
