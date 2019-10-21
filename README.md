@@ -28,5 +28,27 @@ popular a tabela CARTORIOS com os dados presentes na planilha excel Cartórios (
 
 Depois disso basta acessar o site [aqui](http://localhost/VIKINGS/).
 
+## Funcionamento
+Ao acessar o site o usuário é automaticamente redirecionado para 'Root/index.php' que realizará os requires nos arquivos necessários para a classe Dispatcher.
+Esta recebe da classe Request a url requisitada pelo o usuário e a divide, por meio da classe Router, em domínio, controlador e ação. Baseado nas últimas duas 
+partes da url o dispatcher chama o controlador correto e executa a ação requisitada.
+
+Durante a execução da ação, caso necessário, o controlador requisita dados do banco de dados para o modelo condizente ao seu controlador e este modelo, realizará 
+a conexão com o bd, por meio da classe singleton Database, realizará o comando sql e, caso o comando tenha sido um select retornará os dados para o controlador que 
+os repassará para a view solicitada pelo usuário.
+
+## Funcionalidades
+- [x] Visualização dos dados dos cartórios
+    - [x] Paginação
+    - [x] Search bar
+- [x] Criação de registros de cartórios
+    - [x] Manual
+    - [x] por meio de arquivo xml
+- [x] Edição dos registros cadastrados
+- [x] Possibilidade de deletar registros
+- [x] list syntax required (any unordered or ordered list supported)
+- [x] this is a complete item
+- [ ] this is an incomplete item
+
 ## Contatos
 * iagocortes@gmail.com

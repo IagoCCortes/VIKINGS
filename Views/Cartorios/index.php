@@ -71,10 +71,10 @@
                             echo "<td class='text-center'>" . $cartorio['CRIADO_EM'] ."</td>";
                             echo "<td class='text-center'>" . ($cartorio['ATUALIZADO_EM'] === NULL ? '-' : $cartorio['ATUALIZADO_EM']) ."</td>";
                             echo "<td class='text-center'>
-                                    <a class='btn btn-info btn-xs' href='/VIKINGS/cartorios/editar/" . $cartorio["COD"] . "' ><span class='glyphicon glyphicon-edit'></span> Edit</a> 
+                                    <a class='btn btn-xs' title='editar' href='/VIKINGS/cartorios/editar/" . $cartorio["COD"] . "' ><i style='color:#337ab7;' class='fas fa-edit'></i></a> 
                                     <a href='/VIKINGS/cartorios/deletar/" . $cartorio["COD"] . 
-                                    "' class='btn btn-danger btn-xs' onclick='return confirm(\"Você tem certeza que deseja deletar este registro?\");'>
-                                    <span class='glyphicon glyphicon-remove'></span> Del</a>
+                                    "' class='btn btn-xs' title='deletar' onclick='return confirm(\"Você tem certeza que deseja deletar este registro?\");'>
+                                    <i style='color:#337ab7;' class='fas fa-trash-alt'></i></a>
                                   </td>";
                             echo "</tr>";
                         }
