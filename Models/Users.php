@@ -36,13 +36,14 @@ class Users extends Model {
         $req->execute(array($user, $user));
         $result = $req->fetch();
         if(!isset($result)){
-            return 0;
+            return;
         }else{
             $pwdCheck = password_verify($pwd, $result['PASSWORD']);
             if(!$pwdCheck){
-                return 0;
+                return;
             }else{
                 return $result['USERNAME'];
+                //return $result['USERNAME'];
             }
         }
         /*para o controlador

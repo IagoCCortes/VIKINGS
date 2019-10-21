@@ -204,10 +204,10 @@
     <div class="navbar-header float-right"> 
       <?php 
       if(!isset($_SESSION['user'])){
-        echo '<a id="login" class="navbar-brand" href="/VIKINGS/Users/acessar" style="color: white"><i class="fas fa-sign-in-alt" title="login"></i></a>';
+        echo '<a id="login" class="navbar-brand" href="/VIKINGS/Users/login" style="color: white">Login <i class="fas fa-sign-in-alt" title="login"></i></a>';
       }else{
-        echo '<span>' . $_SESSION['user'] . '</span>';
-        echo '<a id="logout" class="navbar-brand" href="/VIKINGS/Users/logout" style="color: white"><i class="fas fa-sign-out-alt" title="logout"></i></i></a>';
+        echo '<a id="userPg" class="navbar-brand" href="/VIKINGS/Users/u/' . $_SESSION['user'] . '" style="color: white">' . $_SESSION['user'] . '</a>';
+        echo '<a id="logout" class="navbar-brand" href="/VIKINGS/Users/logout" style="color: white">Logout <i class="fas fa-sign-out-alt" title="logout"></i></i></a>';
       }
       ?>
       

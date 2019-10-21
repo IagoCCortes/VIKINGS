@@ -72,4 +72,8 @@
                                 , $cartorios["ENDERECO"], $cartorios["BAIRRO"], $cartorios["CIDADE"], $cartorios["TABELIAO"] 
                                 , $cartorios["ATIVO"], $cartorios["UF"], $cartorios["CEP"], $cartorios["DOCUMENTO"])); ?>;                                    
     preencheCampos(campos);
+
+    if( 1 == <?php echo $cartorios["ATIVO"];?>){
+      $('#ativo').prop('checked', true);
+    }
 </script>

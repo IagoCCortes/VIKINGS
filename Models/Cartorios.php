@@ -74,6 +74,7 @@ class Cartorios extends Model {
     }
 
     public function mostraIntervaloDeRegistros($start, $count){
+        //risco de segurança
         $sql = "SELECT * 
                 FROM cartorios 
                 order by xml_atualizar desc, atualizado_em desc, criado_em desc 
@@ -114,6 +115,7 @@ class Cartorios extends Model {
     }
 
     public function mostraRegistrosPesquisados($start, $count, $search){
+        //risco de segurança
         $sql = "SELECT * 
         FROM cartorios 
         where upper(nome) like upper('%" . $search . "%') or 

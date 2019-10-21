@@ -81,41 +81,46 @@
                         ?>
                     </table>
                 </div>
-                <div class="float-right">
-                  <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                    <ul class="pagination">
-                    <?php 
-                        $totalPgs = ceil($total[0] / $count);
-                        $curPg = floor($start / $count);
-                        $newStart = $curPg * $count - $count;
-                      echo '<li class="paginate_button page-item previous' . ($curPg == 0? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_previous">
-                        <a href="/VIKINGS/cartorios/index/'. ($start - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Anteriores</a>
-                      </li>';
-                        echo '<li class="paginate_button page-item' . (0 == $curPg ? ' active' : '') . '">
-                                  <a href="/VIKINGS/cartorios/index/0/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">1</a>
-                                </li>';
-                        for($i = $curPg -2; ($i <= $curPg + 2) && ($i < $totalPgs -1); $i++){
-                          if($i < 1){
-                            continue;
-                          }
-                          else{
-                            echo '<li class="paginate_button page-item' . ($i == $curPg ? ' active' : '') . '">
-                                  <a href="/VIKINGS/cartorios/index/' . (($i + 1) * $count - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($i+2) . '" tabindex="0" class="page-link">' . ($i+1) . '</a>
-                                </li>';
-                          }
-                        }
-                        if($totalPgs > 1){
-                          echo '<li class="paginate_button page-item' . (($totalPgs -1) == $curPg ? ' active' : '') . '">
-                                    <a href="/VIKINGS/cartorios/index/' . ($totalPgs * $count - $count) . '/' . $count .
-                                    '/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($totalPgs + 1) . '" tabindex="0" class="page-link"'. ($totalPgs + 1 == 1? ' style="display: none;"' : '') . '>' . $totalPgs . '</a>
+                <div>
+                  <div class="float-left">
+                  <?php 
+                  $totalPgs = ceil($total[0] / $count);
+                  $curPg = floor($start / $count);
+                  $newStart = $curPg * $count - $count;
+                  echo '<span>Mostrando ' . ($start + 1) . ' a ' . ($start + $count) . ' de ' . $total[0] . '</span>';
+                  echo '</div>';      
+                  echo '<div class="float-right">';
+                  echo '<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">';
+                  echo '<ul class="pagination">'; 
+                        echo '<li class="paginate_button page-item previous' . ($curPg == 0? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_previous">
+                          <a href="/VIKINGS/cartorios/index/'. ($start - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Anteriores</a>
+                        </li>';
+                          echo '<li class="paginate_button page-item' . (0 == $curPg ? ' active' : '') . '">
+                                    <a href="/VIKINGS/cartorios/index/0/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">1</a>
                                   </li>';
-                        }
-                        
-                      echo '<li class="paginate_button page-item next' . (((($curPg + 1)== $totalPgs) || ($totalPgs == 0))? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_next">
-                        <a href="/VIKINGS/cartorios/index/'. ($start + $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">Próximos</a>
-                      </li>'
-                      ?>
-                    </ul>
+                          for($i = $curPg -2; ($i <= $curPg + 2) && ($i < $totalPgs -1); $i++){
+                            if($i < 1){
+                              continue;
+                            }
+                            else{
+                              echo '<li class="paginate_button page-item' . ($i == $curPg ? ' active' : '') . '">
+                                    <a href="/VIKINGS/cartorios/index/' . (($i + 1) * $count - $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($i+2) . '" tabindex="0" class="page-link">' . ($i+1) . '</a>
+                                  </li>';
+                            }
+                          }
+                          if($totalPgs > 1){
+                            echo '<li class="paginate_button page-item' . (($totalPgs -1) == $curPg ? ' active' : '') . '">
+                                      <a href="/VIKINGS/cartorios/index/' . ($totalPgs * $count - $count) . '/' . $count .
+                                      '/' . $search . '" aria-controls="dataTable" data-dt-idx="' . ($totalPgs + 1) . '" tabindex="0" class="page-link"'. ($totalPgs + 1 == 1? ' style="display: none;"' : '') . '>' . $totalPgs . '</a>
+                                    </li>';
+                          }
+                          
+                        echo '<li class="paginate_button page-item next' . (((($curPg + 1)== $totalPgs) || ($totalPgs == 0))? ' disabled" style="pointer-events: none;"' : '') . ' id="dataTable_next">
+                          <a href="/VIKINGS/cartorios/index/'. ($start + $count) . '/' . $count .'/' . $search . '" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">Próximos</a>
+                        </li>'
+                        ?>
+                      </ul>
+                    </div>
                   </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 class usersController extends Controller {
 
-    function acessar() {
+    function signup() {
         if(isset($_POST['btn-SU'])){
             $user = $_POST['user'];
             $email = $_POST['email'];
@@ -12,36 +12,37 @@ class usersController extends Controller {
             if((!filter_var($email, FILTER_VALIDATE_EMAIL)) && (!preg_match("/^[a-zA-Z0-9]*$/", $user))){
                 //header("location: " . WEBROOT . "Users/acessar?error=invalidmailuid");
                 //exit();
-                header("location: " . WEBROOT . "Users/acessar");
+                header("location: " . WEBROOT . "Users/signup");
             }else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                //header("location: " . WEBROOT . "Users/acessar?error=invalidmail&user=".$user);
+                //header("location: " . WEBROOT . "Users/signup?error=invalidmail&user=".$user);
                 //exit();
-                header("location: " . WEBROOT . "Users/acessar");
+                header("location: " . WEBROOT . "Users/signup");
             }else if(!preg_match("/^[a-zA-Z0-9]*$/", $user)){
-                //header("location: " . WEBROOT . "Users/acessar?error=invaliduid&mail=" . $email);
+                //header("location: " . WEBROOT . "Users/signup?error=invaliduid&mail=" . $email);
                 //exit();
-                header("location: " . WEBROOT . "Users/acessar");
+                header("location: " . WEBROOT . "Users/signup");
             }else if($senha !== $csenha){
-                //header("location: " . WEBROOT . "Users/acessar?error=difPasswrds&user=".$user . "&mail=" . $email);
+                //header("location: " . WEBROOT . "Users/signup?error=difPasswrds&user=".$user . "&mail=" . $email);
                 //exit();
-                header("location: " . WEBROOT . "Users/acessar");
+                header("location: " . WEBROOT . "Users/signup");
             }else{
                 require(ROOT . 'Models/Users.php');
                 $users = new Users();
                 $resultado = $users->pesquisarUserEmail($user);
 
                 if($resultado[0] > 0){
-                    //header("location: " . WEBROOT . "Users/acessar?error=uidTaken&mail=".$email);
+                    //header("location: " . WEBROOT . "Users/signup?error=uidTaken&mail=".$email);
                     //exit();
-                    header("location: " . WEBROOT . "Users/acessar");
+                    header("location: " . WEBROOT . "Users/signup");
                 }else{
                     $resultado = $users->inserir([$user, $email, $senha]);
-                    //header("location: " . WEBROOT . "Users/acessar?acessar=success");
-                    header("location: " . WEBROOT . "Users/acessar");
+                    //header("location: " . WEBROOT . "Users/signup?signup=success");
+                    header("location: " . WEBROOT . "Users/login");
+                    exit();
                 }
             }
         }
-        $this->render("acessar");
+        $this->render("signup");
     }
 
     function login() {
@@ -53,12 +54,23 @@ class usersController extends Controller {
             $users = new Users();
 
             $result = $users->login($user, $pwd);
-            if($result !== 0){
+            if(isset($result)){
+                session_start();
                 $_SESSION['user'] = $result;
+                //$_SESSION['user'] = 'iago';
                 header("location: " . WEBROOT . "Cartorios/index");
+                exit();
             }
         }
-        //$this->render("../index");
+        $this->render("login");
+    }
+
+    function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+        header("location: " . WEBROOT . "Users/login");
+        exit();
     }
 }
 ?>
