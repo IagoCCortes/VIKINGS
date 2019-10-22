@@ -1,7 +1,7 @@
 # Vikings
 
 ## Importante
-Faça o download do zip (não dê clone), o path no código está usando VIKINGS-master
+Faça o download do zip, o path no código está usando VIKINGS-master. Caso você dê o clone renomeie a pasta raiz para VIKINGS-master.
 
 ## Descrição
 Um site desenvolvido em PHP para controle de registros de cartórios de uma empresa
