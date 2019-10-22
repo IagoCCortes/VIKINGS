@@ -1,5 +1,8 @@
 # Vikings
 
+## Importante
+Faça o download do zip (não dê clone), o path no código está usando VIKINGS-master
+
 ## Descrição
 Um site desenvolvido em PHP para controle de registros de cartórios de uma empresa
 
